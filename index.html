@@ -229,6 +229,18 @@
         <a href="#" class="buy-button" onclick="openModal('D')">Buy Ticket</a>
       </div>
     </div>
+    <div>
+      <img src="https://picsum.photos/200/300" alt="Movie 5">
+      <div class="buy-button-container">
+        <a href="#" class="buy-button" onclick="openModal('E')">Buy Ticket</a>
+      </div>
+    </div>
+    <div>
+      <img src="https://picsum.photos/seed/picsum/200/300" alt="Movie 6">
+      <div class="buy-button-container">
+        <a href="#" class="buy-button" onclick="openModal('F')">Buy Ticket</a>
+      </div>
+    </div>
     <!-- Add more images and buttons as needed -->
   </div>
 
@@ -289,20 +301,45 @@
     }
 
     function submitScreen() {
-      var selectedScreen = document.querySelector('input[name="screen"]:checked');
-      if (selectedScreen) {
-        var screenValue = selectedScreen.value;
-        var summaryText = "Booking Summary:<br>";
-        var summaryText = "Congratulations! Booking Summary <br>";
-        summaryText += "<strong>Screen:</strong> " + screenValue + "<br>";
-        summaryText += "<strong>Movie:</strong> Movie XYZ"; // Add the movie information
-        document.getElementById("bookingSummary").innerHTML = summaryText;
-
-        openSummaryModal();
-      }
-
-      closeModal();
+  var selectedScreen = document.querySelector('input[name="screen"]:checked');
+  if (selectedScreen) {
+    var screenValue = selectedScreen.value;
+    var movieName = "";
+    
+    // Set the movie name based on the selected screen
+    switch (screenValue) {
+      case "A":
+        movieName = "Avatar: The Way of Water";
+        break;
+      case "B":
+        movieName = "Batman: The Dark Knight";
+        break;
+      case "C":
+        movieName = "The Shawshank Redemption";
+        break;
+      case "D":
+        movieName = "The Notebook";
+        break;
+      case "E":
+        movieName = "Inception";
+        break;
+      case "F":
+        movieName = "The Lord of the Rings: The Fellowship of the Ring";
+        break;
+      default:
+        movieName = "";
     }
+    
+    var summaryText = "Congratulations! Your ticket has been booked.<br>";
+    summaryText += "<strong>Screen:</strong> " + screenValue + "<br>";
+    summaryText += "<strong>Movie:</strong> " + movieName;
+    document.getElementById("bookingSummary").innerHTML = summaryText;
+
+    openSummaryModal();
+  }
+
+  closeModal();
+}
 
     function openSummaryModal() {
       var summaryModal = document.getElementById("summaryModal");
