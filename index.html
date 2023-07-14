@@ -1,355 +1,413 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Movie Slideshow</title>
-  <style>
-    /* CSS for the image container */
-    .image-container {
-      max-width: 800px;
-      margin: auto;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start; /* Align items at the top */
-      flex-wrap: wrap; /* Allow images to wrap to new lines */
-      gap: 20px; /* Add spacing between images */
-    }
-    
-    .image-container img {
-      max-width: 300px; /* Adjust the image width as needed */
-      height: auto;
-      border-radius: 10px; /* Rounded borders */
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow effect */
-      transition: transform 0.3s ease; /* Add smooth transition effect */
-    }
-    
-    .image-container img:hover {
-      transform: scale(1.1); /* Apply scale transform on hover */
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+    <title>Booking Page</title>
+    <style>
+        /* CSS for the image container */
+        .image-container {
+            max-width: 800px;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            /* Align items at the top */
+            flex-wrap: wrap;
+            /* Allow images to wrap to new lines */
+            gap: 20px;
+            /* Add spacing between images */
+        }
+
+        .image-container img {
+            max-width: 300px;
+            /* Adjust the image width as needed */
+            height: auto;
+            border-radius: 10px;
+            /* Rounded borders */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Light shadow effect */
+            transition: transform 0.3s ease;
+            /* Add smooth transition effect */
+        }
+
+        .image-container img:hover {
+            transform: scale(1.1);
+            /* Apply scale transform on hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            /* Increase shadow on hover */
+        }
+
+        .buy-button-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .buy-button {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #FF5757;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            /* Add transition effect for hover */
+        }
+
+        .buy-button:hover {
+            transform: scale(1.05);
+            /* Apply scale transform on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Light shadow effect on hover */
+        }
+
+        /* CSS for the modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 20% auto;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .modal-close {
+            float: right;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+            color: #888;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #333;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 0;
+            background: linear-gradient(to right, #FF5757, #FFC100);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .modal-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .modal-option input[type="radio"] {
+            margin-right: 10px;
+        }
+        .modal-option input[type="number"] {
+        padding: 8px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        outline: none;
+        width: 100%;
+        max-width: 100px;
+        text-align: center;
     }
 
-    .buy-button-container {
-      text-align: center;
-      margin-top: 10px;
+        .modal-option label {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+        .modal-option label[for="ticketQuantity"] {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+        margin-right: 10px;
     }
 
-    .buy-button {
-      display: inline-block;
-      padding: 8px 12px;
-      background-color: #FF5757;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 14px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition effect for hover */
-    }
+        .modal-submit {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 16px;
+            background-color: #FF5757;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 20px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
 
-    .buy-button:hover {
-      transform: scale(1.05); /* Apply scale transform on hover */
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow effect on hover */
-    }
+        .modal-submit:hover {
+            background-color: #FF3C3C;
+        }
 
-    /* CSS for the modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.6);
-    }
-    
-    .modal-content {
-      background-color: #fefefe;
-      margin: 20% auto;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 400px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      text-align: center;
-    }
+        .booking-summary-modal {
+            display: none;
+            position: fixed;
+            z-index: 2;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
 
-    .modal-close {
-      float: right;
-      cursor: pointer;
-      font-size: 20px;
-      font-weight: bold;
-      color: #888;
-      transition: color 0.3s ease;
-    }
+        .booking-summary-modal-content {
+            background-color: #fefefe;
+            margin: 20% auto;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
 
-    .modal-close:hover {
-      color: #333;
-    }
+        .booking-summary-modal-close {
+            float: right;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+            color: #888;
+            transition: color 0.3s ease;
+        }
 
-    .modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
+        .booking-summary-modal-close:hover {
+            color: #333;
+        }
 
-    .modal-title {
-      font-size: 36px;
-      font-weight: bold;
-      margin: 0;
-      background: linear-gradient(to right, #FF5757, #FFC100);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+        .booking-summary-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+            color: #FF5757;
+            margin-bottom: 20px;
+        }
 
-    .modal-option {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-    }
+        .booking-summary-content {
+            font-size: 16px;
+            text-align: left;
+            margin-bottom: 20px;
+        }
 
-    .modal-option input[type="radio"] {
-      margin-right: 10px;
-    }
+        .booking-summary-content1 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #FF5757;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(255, 87, 87, 0.5);
+        }
 
-    .modal-option label {
-      font-size: 20px;
-      font-weight: bold;
-      color: #333;
-    }
+        .booking-summary-content strong {
+            font-weight: bold;
+        }
 
-    .modal-submit {
-      display: block;
-      margin-top: 20px;
-      padding: 10px 16px;
-      background-color: #FF5757;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 20px;
-      text-align: center;
-      transition: background-color 0.3s ease;
-    }
+        .booking-summary-modal-confirm {
+            display: block;
+            padding: 10px 16px;
+            background-color: #FF5757;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 20px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
 
-    .modal-submit:hover {
-      background-color: #FF3C3C;
-    }
+        .booking-summary-modal-confirm:hover {
+            background-color: #FF3C3C;
+        }
 
-    .booking-summary-modal {
-      display: none;
-      position: fixed;
-      z-index: 2;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.6);
-    }
-
-    .booking-summary-modal-content {
-      background-color: #fefefe;
-      margin: 20% auto;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 400px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      text-align: center;
-    }
-
-    .booking-summary-modal-close {
-      float: right;
-      cursor: pointer;
-      font-size: 20px;
-      font-weight: bold;
-      color: #888;
-      transition: color 0.3s ease;
-    }
-
-    .booking-summary-modal-close:hover {
-      color: #333;
-    }
-
-    .booking-summary-title {
-      font-size: 24px;
-      font-weight: bold;
-      margin: 0;
-      color: #FF5757;
-      margin-bottom: 20px;
-    }
-
-    .booking-summary-content {
-      font-size: 16px;
-      text-align: left;
-      margin-bottom: 20px;
-    }
-
-    .booking-summary-content strong {
-      font-weight: bold;
-    }
-
-    .booking-summary-modal-confirm {
-      display: block;
-      padding: 10px 16px;
-      background-color: #FF5757;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 20px;
-      text-align: center;
-      transition: background-color 0.3s ease;
-    }
-
-    .booking-summary-modal-confirm:hover {
-      background-color: #FF3C3C;
-    }
-  </style>
+        .title {
+            font-size: 36px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 20px;
+        color: #FF5757;
+        text-transform: uppercase;
+        text-shadow: 2px 2px 4px rgba(255, 87, 87, 0.5);
+        }
+    </style>
 </head>
+
 <body>
-  <div class="image-container">
-    <div>
-      <img src="https://picsum.photos/200/300" alt="Movie 1">
-      <div class="buy-button-container">
-        <a href="#" class="buy-button" onclick="openModal('A')">Buy Ticket</a>
+    <h2 class="title">CURRENTLY SHOWING</h2>
+    <div class="image-container">
+        
+        <div>
+          <img src="https://upload.wikimedia.org/wikipedia/en/5/54/Avatar_The_Way_of_Water_poster.jpg" alt="Movie 1">
+          <div class="buy-button-container">
+            <a href="#" class="buy-button" onclick="openModal('A')">Buy Ticket</a>
+          </div>
+        </div>
+        <div>
+          <img src="https://upload.wikimedia.org/wikipedia/en/d/d0/John_Wick_-_Chapter_4_promotional_poster.jpg" alt="Movie 2">
+          <div class="buy-button-container">
+            <a href="#" class="buy-button" onclick="openModal('B')">Buy Ticket</a>
+          </div>
+        </div>
+        <div>
+          <img src="https://upload.wikimedia.org/wikipedia/en/1/13/Top_Gun_Maverick_Poster.jpg" alt="Movie 3">
+          <div class="buy-button-container">
+            <a href="#" class="buy-button" onclick="openModal('C')">Buy Ticket</a>
+          </div>
+        </div>
+        <div>
+          <img src="https://upload.wikimedia.org/wikipedia/en/e/ed/Mission-_Impossible_%E2%80%93_Dead_Reckoning_Part_One_poster.jpg" alt="Movie 4">
+          <div class="buy-button-container">
+            <a href="#" class="buy-button" onclick="openModal('D')">Buy Ticket</a>
+          </div>
+        </div>
+        <div>
+          <img src="https://upload.wikimedia.org/wikipedia/en/4/4a/Oppenheimer_%28film%29.jpg" alt="Movie 5">
+          <div class="buy-button-container">
+            <a href="#" class="buy-button" onclick="openModal('E')">Buy Ticket</a>
+          </div>
+        </div>
+        <div>
+          <img src="https://upload.wikimedia.org/wikipedia/en/9/99/Solo_Leveling_Webtoon.png" alt="Movie 6">
+          <div class="buy-button-container">
+            <a href="#" class="buy-button" onclick="openModal('F')">Buy Ticket</a>
+          </div>
+        </div>
+        <!-- Add more images and buttons as needed -->
       </div>
+      
+
+    <!-- Select Screen Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Select Screen</h2>
+                <span class="modal-close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-option">
+                <input type="radio" id="screenA" name="screen" value="A">
+                <label for="screenA">SCREEN A - Group Of Audience</label>
+            </div>
+            <div class="modal-option">
+                <input type="radio" id="screenB" name="screen" value="B">
+                <label for="screenB">SCREEN B - Family and Friends</label>
+            </div>
+            <div class="modal-option">
+                <input type="radio" id="screenC" name="screen" value="C">
+                <label for="screenC">SCREEN C - Couples</label>
+            </div>
+            <div class="modal-option">
+                <input type="radio" id="screenD" name="screen" value="D">
+                <label for="screenD">SCREEN D - Alone</label>
+            </div>
+            <div class="modal-option">
+                <label for="ticketQuantity">Number of Tickets:</label>
+                <input type="number" id="ticketQuantity" name="ticketQuantity" min="1" max="30" value="1">
+            </div>
+            <a href="#" class="modal-submit" onclick="submitScreen()">Submit</a>
+        </div>
     </div>
-    <div>
-      <img src="https://picsum.photos/id/237/200/300" alt="Movie 2">
-      <div class="buy-button-container">
-        <a href="#" class="buy-button" onclick="openModal('B')">Buy Ticket</a>
-      </div>
+
+
+    <!-- Booking Summary Modal -->
+    <div id="summaryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Booking Summary</h2>
+                <span class="modal-close" onclick="closeSummaryModal()">&times;</span>
+            </div>
+            <div class="booking-summary-content" id="bookingSummary"></div>
+            <a href="#" class="booking-summary-modal-confirm" onclick="closeSummaryModal()">Confirm</a>
+        </div>
     </div>
-    <div>
-      <img src="https://picsum.photos/seed/picsum/200/300" alt="Movie 3">
-      <div class="buy-button-container">
-        <a href="#" class="buy-button" onclick="openModal('C')">Buy Ticket</a>
-      </div>
-    </div>
-    <div>
-      <img src="https://picsum.photos/200/300" alt="Movie 4">
-      <div class="buy-button-container">
-        <a href="#" class="buy-button" onclick="openModal('D')">Buy Ticket</a>
-      </div>
-    </div>
-    <div>
-      <img src="https://picsum.photos/200/300" alt="Movie 5">
-      <div class="buy-button-container">
-        <a href="#" class="buy-button" onclick="openModal('E')">Buy Ticket</a>
-      </div>
-    </div>
-    <div>
-      <img src="https://picsum.photos/seed/picsum/200/300" alt="Movie 6">
-      <div class="buy-button-container">
-        <a href="#" class="buy-button" onclick="openModal('F')">Buy Ticket</a>
-      </div>
-    </div>
-    <!-- Add more images and buttons as needed -->
-  </div>
 
-  <!-- Select Screen Modal -->
-  <div id="myModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title">Select Screen</h2>
-        <span class="modal-close" onclick="closeModal()">&times;</span>
-      </div>
-      <div class="modal-option">
-        <input type="radio" id="screenA" name="screen" value="A">
-        <label for="screenA">SCREEN A - Group Of Audience</label>
-      </div>
-      <div class="modal-option">
-        <input type="radio" id="screenB" name="screen" value="B">
-        <label for="screenB">SCREEN B - Family and Friends</label>
-      </div>
-      <div class="modal-option">
-        <input type="radio" id="screenC" name="screen" value="C">
-        <label for="screenC">SCREEN C - Couples</label>
-      </div>
-      <div class="modal-option">
-        <input type="radio" id="screenD" name="screen" value="D">
-        <label for="screenD">SCREEN D - Alone</label>
-      </div>
-      <a href="#" class="modal-submit" onclick="submitScreen()">Submit</a>
-    </div>
-  </div>
+    <script>
+        function openModal(screen) {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "block";
 
-  <!-- Booking Summary Modal -->
-  <div id="summaryModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title">Booking Summary</h2>
-        <span class="modal-close" onclick="closeSummaryModal()">&times;</span>
-      </div>
-      <div class="booking-summary-content" id="bookingSummary"></div>
-      <a href="#" class="booking-summary-modal-confirm" onclick="closeSummaryModal()">Confirm</a>
-    </div>
-  </div>
+            // Set the selected screen radio button based on the parameter
+            var selectedScreen = document.getElementById("screen" + screen);
+            if (selectedScreen) {
+                selectedScreen.checked = true;
+            }
+        }
 
-  <script>
-    function openModal(screen) {
-      var modal = document.getElementById("myModal");
-      modal.style.display = "block";
+        function closeModal() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
 
-      // Set the selected screen radio button based on the parameter
-      var selectedScreen = document.getElementById("screen" + screen);
-      if (selectedScreen) {
-        selectedScreen.checked = true;
-      }
-    }
+        function submitScreen() {
+            var selectedScreen = document.querySelector('input[name="screen"]:checked');
+            var ticketQuantity = document.getElementById("ticketQuantity").value;
 
-    function closeModal() {
-      var modal = document.getElementById("myModal");
-      modal.style.display = "none";
-    }
+            if (selectedScreen) {
+                var screenValue = selectedScreen.value;
+                var summaryText = "Congratulations! Your ticket has been booked.<br>";
+                summaryText += "<strong>Screen:</strong> " + screenValue + "<br>";
+                summaryText += "<strong>Movie:</strong> " + getMovieTitle(screenValue) + "<br>";
+                summaryText += "<strong>Tickets:</strong> " + ticketQuantity + "<br>";
+                document.getElementById("bookingSummary").innerHTML = summaryText;
 
-    function submitScreen() {
-  var selectedScreen = document.querySelector('input[name="screen"]:checked');
-  if (selectedScreen) {
-    var screenValue = selectedScreen.value;
-    var movieName = "";
-    
-    // Set the movie name based on the selected screen
-    switch (screenValue) {
-      case "A":
-        movieName = "Avatar: The Way of Water";
-        break;
-      case "B":
-        movieName = "Batman: The Dark Knight";
-        break;
-      case "C":
-        movieName = "The Shawshank Redemption";
-        break;
-      case "D":
-        movieName = "The Notebook";
-        break;
-      case "E":
-        movieName = "Inception";
-        break;
-      case "F":
-        movieName = "The Lord of the Rings: The Fellowship of the Ring";
-        break;
-      default:
-        movieName = "";
-    }
-    
-    var summaryText = "Congratulations! Your ticket has been booked.<br>";
-    summaryText += "<strong>Screen:</strong> " + screenValue + "<br>";
-    summaryText += "<strong>Movie:</strong> " + movieName;
-    document.getElementById("bookingSummary").innerHTML = summaryText;
+                openSummaryModal();
+            }
 
-    openSummaryModal();
-  }
+            closeModal();
+        }
 
-  closeModal();
-}
+        function getMovieTitle(screenValue) {
+            switch (screenValue) {
+                case "A":
+                    return "Avatar: The Way of Water";
+                case "B":
+                    return "John Wick: Chapter 4";
+                case "C":
+                    return "Top Gun: Maverick";
+                case "D":
+                    return "Mission: Impossible: Dead Reckoning Part One";
+                case "E":
+                    return "Oppenheimer";
+                case "F":
+                    return "Solo Leveling";
+                default:
+                    return "";
+            }
+        }
 
-    function openSummaryModal() {
-      var summaryModal = document.getElementById("summaryModal");
-      summaryModal.style.display = "block";
-    }
 
-    function closeSummaryModal() {
-      var summaryModal = document.getElementById("summaryModal");
-      summaryModal.style.display = "none";
-    }
-  </script>
+
+        function openSummaryModal() {
+            var summaryModal = document.getElementById("summaryModal");
+            summaryModal.style.display = "block";
+        }
+
+        function closeSummaryModal() {
+            var summaryModal = document.getElementById("summaryModal");
+            summaryModal.style.display = "none";
+        }
+    </script>
 </body>
+
 </html>
