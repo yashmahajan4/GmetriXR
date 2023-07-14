@@ -1,2 +1,0 @@
-# GmetriXR
-my html codes
