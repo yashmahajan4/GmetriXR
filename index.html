@@ -281,23 +281,9 @@
       if (selectedScreen) {
         selectedScreen.checked = true;
       }
-    }
-
-    function closeModal() {
-      var modal = document.getElementById("myModal");
-      modal.style.display = "none";
-    }
-
-    function submitScreen() {
-      var selectedScreen = document.querySelector('input[name="screen"]:checked');
-      if (selectedScreen) {
-        var screenValue = selectedScreen.value;
-        var summaryText = "Congratulations! Booking Summary <br>";
-        summaryText += "<strong>Screen:</strong> " + screenValue + "<br>";
-        summaryText += "<strong>Movie:</strong> Movie XYZ"; // Add the movie information
-        document.getElementById("bookingSummary").innerHTML = summaryText;
-
-        openSummaryModal();
+      slideIndex++;
+      if (slideIndex > slides.length) {
+        slideIndex = 1;
       }
 
       closeModal();
@@ -314,4 +300,5 @@
     }
   </script>
 </body>
+</html>
 </html>
