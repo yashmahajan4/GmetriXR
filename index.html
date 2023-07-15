@@ -122,29 +122,31 @@
         .modal-option input[type="radio"] {
             margin-right: 10px;
         }
+
         .modal-option input[type="number"] {
-        padding: 8px;
-        font-size: 16px;
-        border: none;
-        border-radius: 5px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        outline: none;
-        width: 100%;
-        max-width: 100px;
-        text-align: center;
-    }
+            padding: 8px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            outline: none;
+            width: 100%;
+            max-width: 100px;
+            text-align: center;
+        }
 
         .modal-option label {
             font-size: 20px;
             font-weight: bold;
             color: #333;
         }
+
         .modal-option label[for="ticketQuantity"] {
-        font-size: 16px;
-        font-weight: bold;
-        color: #333;
-        margin-right: 10px;
-    }
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-right: 10px;
+        }
 
         .modal-submit {
             display: block;
@@ -244,12 +246,12 @@
 
         .title {
             font-size: 36px;
-        font-weight: bold;
-        text-align: center;
-        margin-top: 20px;
-        color: #FF5757;
-        text-transform: uppercase;
-        text-shadow: 2px 2px 4px rgba(255, 87, 87, 0.5);
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            color: #FF5757;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(255, 87, 87, 0.5);
         }
     </style>
 </head>
@@ -257,157 +259,159 @@
 <body>
     <h2 class="title">CURRENTLY SHOWING</h2>
     <div class="image-container">
-        
+
         <div>
-          <img src="https://upload.wikimedia.org/wikipedia/en/5/54/Avatar_The_Way_of_Water_poster.jpg" alt="Movie 1">
-          <div class="buy-button-container">
-            <a href="#" class="buy-button" onclick="openModal('A')">Buy Ticket</a>
-          </div>
-        </div>
-        <div>
-          <img src="https://upload.wikimedia.org/wikipedia/en/d/d0/John_Wick_-_Chapter_4_promotional_poster.jpg" alt="Movie 2">
-          <div class="buy-button-container">
-            <a href="#" class="buy-button" onclick="openModal('B')">Buy Ticket</a>
-          </div>
+            <img src="https://upload.wikimedia.org/wikipedia/en/5/54/Avatar_The_Way_of_Water_poster.jpg" alt="Movie 1">
+            <div class="buy-button-container">
+                <a href="#" class="buy-button" onclick="openModal('A')">Buy Ticket</a>
+            </div>
         </div>
         <div>
-          <img src="https://upload.wikimedia.org/wikipedia/en/1/13/Top_Gun_Maverick_Poster.jpg" alt="Movie 3">
-          <div class="buy-button-container">
-            <a href="#" class="buy-button" onclick="openModal('C')">Buy Ticket</a>
-          </div>
+            <img src="https://upload.wikimedia.org/wikipedia/en/d/d0/John_Wick_-_Chapter_4_promotional_poster.jpg"
+                alt="Movie 2">
+            <div class="buy-button-container">
+                <a href="#" class="buy-button" onclick="openModal('B')">Buy Ticket</a>
+            </div>
         </div>
         <div>
-          <img src="https://upload.wikimedia.org/wikipedia/en/e/ed/Mission-_Impossible_%E2%80%93_Dead_Reckoning_Part_One_poster.jpg" alt="Movie 4">
-          <div class="buy-button-container">
-            <a href="#" class="buy-button" onclick="openModal('D')">Buy Ticket</a>
-          </div>
+            <img src="https://upload.wikimedia.org/wikipedia/en/1/13/Top_Gun_Maverick_Poster.jpg" alt="Movie 3">
+            <div class="buy-button-container">
+                <a href="#" class="buy-button" onclick="openModal('C')">Buy Ticket</a>
+            </div>
         </div>
         <div>
-          <img src="https://upload.wikimedia.org/wikipedia/en/4/4a/Oppenheimer_%28film%29.jpg" alt="Movie 5">
-          <div class="buy-button-container">
-            <a href="#" class="buy-button" onclick="openModal('E')">Buy Ticket</a>
-          </div>
+            <img src="https://upload.wikimedia.org/wikipedia/en/e/ed/Mission-_Impossible_%E2%80%93_Dead_Reckoning_Part_One_poster.jpg"
+                alt="Movie 4">
+            <div class="buy-button-container">
+                <a href="#" class="buy-button" onclick="openModal('D')">Buy Ticket</a>
+            </div>
         </div>
         <div>
-          <img src="https://upload.wikimedia.org/wikipedia/en/9/99/Solo_Leveling_Webtoon.png" alt="Movie 6">
-          <div class="buy-button-container">
-            <a href="#" class="buy-button" onclick="openModal('F')">Buy Ticket</a>
-          </div>
+            <img src="https://upload.wikimedia.org/wikipedia/en/4/4a/Oppenheimer_%28film%29.jpg" alt="Movie 5">
+            <div class="buy-button-container">
+                <a href="#" class="buy-button" onclick="openModal('E')">Buy Ticket</a>
+            </div>
         </div>
-        <!-- Add more images and buttons as needed -->
-      </div>
-      
-
-    <!-- Select Screen Modal -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Select Screen</h2>
-                <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div>
+            <img src="https://upload.wikimedia.org/wikipedia/en/9/99/Solo_Leveling_Webtoon.png" alt="Movie 6">
+            <div class="buy-button-container">
+                <a href="#" class="buy-button" onclick="openModal('F')">Buy Ticket</a>
             </div>
-            <div class="modal-option">
-                <input type="radio" id="screenA" name="screen" value="A">
-                <label for="screenA">SCREEN A - Group Of Audience</label>
-            </div>
-            <div class="modal-option">
-                <input type="radio" id="screenB" name="screen" value="B">
-                <label for="screenB">SCREEN B - Family and Friends</label>
-            </div>
-            <div class="modal-option">
-                <input type="radio" id="screenC" name="screen" value="C">
-                <label for="screenC">SCREEN C - Couples</label>
-            </div>
-            <div class="modal-option">
-                <input type="radio" id="screenD" name="screen" value="D">
-                <label for="screenD">SCREEN D - Alone</label>
-            </div>
-            <div class="modal-option">
-                <label for="ticketQuantity">Number of Tickets:</label>
-                <input type="number" id="ticketQuantity" name="ticketQuantity" min="1" max="30" value="1">
-            </div>
-            <a href="#" class="modal-submit" onclick="submitScreen()">Submit</a>
         </div>
-    </div>
 
 
-    <!-- Booking Summary Modal -->
-    <div id="summaryModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Booking Summary</h2>
-                <span class="modal-close" onclick="closeSummaryModal()">&times;</span>
+        <!-- Select Screen Modal -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Select Screen</h2>
+                    <span class="modal-close" onclick="closeModal()">&times;</span>
+                </div>
+                <div class="modal-option">
+                    <input type="radio" id="screenA" name="screen" value="A">
+                    <label for="screenA">SCREEN A - Group Of Audience</label>
+                </div>
+                <div class="modal-option">
+                    <input type="radio" id="screenB" name="screen" value="B">
+                    <label for="screenB">SCREEN B - Family and Friends</label>
+                </div>
+                <div class="modal-option">
+                    <input type="radio" id="screenC" name="screen" value="C">
+                    <label for="screenC">SCREEN C - Couples</label>
+                </div>
+                <div class="modal-option">
+                    <input type="radio" id="screenD" name="screen" value="D">
+                    <label for="screenD">SCREEN D - Alone</label>
+                </div>
+                <div class="modal-option">
+                    <label for="ticketQuantity">Number of Tickets:</label>
+                    <input type="number" id="ticketQuantity" name="ticketQuantity" min="1" max="30" value="1">
+                </div>
+                <a href="#" class="modal-submit" onclick="submitScreen()">Submit</a>
             </div>
-            <div class="booking-summary-content" id="bookingSummary"></div>
-            <a href="#" class="booking-summary-modal-confirm" onclick="closeSummaryModal()">Confirm</a>
         </div>
-    </div>
 
-    <script>
-        function openModal(screen) {
-            var modal = document.getElementById("myModal");
-            modal.style.display = "block";
 
-            // Set the selected screen radio button based on the parameter
-            var selectedScreen = document.getElementById("screen" + screen);
-            if (selectedScreen) {
-                selectedScreen.checked = true;
-            }
-        }
+        <!-- Booking Summary Modal -->
+        <div id="summaryModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Booking Summary</h2>
+                    <span class="modal-close" onclick="closeSummaryModal()">&times;</span>
+                </div>
+                <div class="booking-summary-content" id="bookingSummary"></div>
+                <a href="#" class="booking-summary-modal-confirm" onclick="closeSummaryModal()">Confirm</a>
+            </div>
+        </div>
 
-        function closeModal() {
-            var modal = document.getElementById("myModal");
-            modal.style.display = "none";
-        }
+        <script>
+            var movieTitles = {
+                A: "Avatar: The Way of Water",
+                B: "John Wick: Chapter 4",
+                C: "Top Gun: Maverick",
+                D: "Mission: Impossible - Dead Reckoning Part One",
+                E: "Oppenheimer",
+                F: "Solo Leveling"
+            };
 
-        function submitScreen() {
-            var selectedScreen = document.querySelector('input[name="screen"]:checked');
-            var ticketQuantity = document.getElementById("ticketQuantity").value;
+            var selectedScreenValue = ""; // Track the selected screen value
+            var selectedMovieTitle = ""; // Track the selected movie title
 
-            if (selectedScreen) {
-                var screenValue = selectedScreen.value;
-                var summaryText = "Congratulations! Your ticket has been booked.<br>";
-                summaryText += "<strong>Screen:</strong> " + screenValue + "<br>";
-                summaryText += "<strong>Movie:</strong> " + getMovieTitle(screenValue) + "<br>";
-                summaryText += "<strong>Tickets:</strong> " + ticketQuantity + "<br>";
-                document.getElementById("bookingSummary").innerHTML = summaryText;
+            function openModal(screen) {
+                var modal = document.getElementById("myModal");
+                modal.style.display = "block";
 
-                openSummaryModal();
+                // Set the selected screen radio button based on the parameter
+                var selectedScreen = document.getElementById("screen" + screen);
+                if (selectedScreen) {
+                    selectedScreen.checked = true;
+                }
+
+                selectedScreenValue = screen; // Update the selected screen value
+                selectedMovieTitle = movieTitles[screen]; // Update the selected movie title
             }
 
-            closeModal();
-        }
-
-        function getMovieTitle(screenValue) {
-            switch (screenValue) {
-                case "A":
-                    return "Avatar: The Way of Water";
-                case "B":
-                    return "John Wick: Chapter 4";
-                case "C":
-                    return "Top Gun: Maverick";
-                case "D":
-                    return "Mission: Impossible: Dead Reckoning Part One";
-                case "E":
-                    return "Oppenheimer";
-                case "F":
-                    return "Solo Leveling";
-                default:
-                    return "";
+            function closeModal() {
+                var modal = document.getElementById("myModal");
+                modal.style.display = "none";
             }
-        }
 
+            function submitScreen() {
+                var selectedScreen = document.querySelector('input[name="screen"]:checked');
+                var ticketQuantity = document.getElementById("ticketQuantity").value;
 
+                if (selectedScreen) {
+                    var screenValue = selectedScreen.value;
 
-        function openSummaryModal() {
-            var summaryModal = document.getElementById("summaryModal");
-            summaryModal.style.display = "block";
-        }
+                    // Update the movie title only if the screen value has changed
+                    if (selectedScreenValue !== screenValue) {
+                        selectedMovieTitle = movieTitles[screenValue];
+                    }
 
-        function closeSummaryModal() {
-            var summaryModal = document.getElementById("summaryModal");
-            summaryModal.style.display = "none";
-        }
-    </script>
+                    var summaryText = "Congratulations! Your ticket has been booked.<br>";
+                    summaryText += "<strong>Screen:</strong> " + screenValue + "<br>";
+                    summaryText += "<strong>Movie:</strong> " + selectedMovieTitle + "<br>";
+                    summaryText += "<strong>Tickets:</strong> " + ticketQuantity + "<br>";
+                    document.getElementById("bookingSummary").innerHTML = summaryText;
+
+                    openSummaryModal();
+                }
+
+                closeModal();
+            }
+
+            function openSummaryModal() {
+                var summaryModal = document.getElementById("summaryModal");
+                summaryModal.style.display = "block";
+            }
+
+            function closeSummaryModal() {
+                var summaryModal = document.getElementById("summaryModal");
+                summaryModal.style.display = "none";
+            }
+
+        </script>
+
 </body>
 
 </html>
